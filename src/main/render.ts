@@ -4,8 +4,9 @@ initRender()
 
 function initRender() {
 	const world = new World(document.body);
-	world.debuging();
 	world.newBox();
-
+	world.newBox();
+	
+	world.debuging();
 	world.start();
 }

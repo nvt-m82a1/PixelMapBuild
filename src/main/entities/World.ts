@@ -23,11 +23,15 @@ class World {
     this.objects = [];
 
     this.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
-    this.camera.position.set(0, 0, 15);
+    this.camera.position.z = 15;
     this.scene.add(this.camera);
 
     this.render = new THREE.WebGLRenderer();
+    this.render.setPixelRatio(window.devicePixelRatio);
     this.render.setSize(this.width, this.height);
+    this.render.shadowMap.enabled = true;
+    this.render.shadowMap.type = THREE.PCFShadowMap;
+
     this.container.appendChild(this.render.domElement);
 
     this.interact = new Interact(this);
@@ -56,7 +60,6 @@ class World {
     const lineSegments = new THREE.LineSegments(new THREE.WireframeGeometry(this.map.geometry), lineMaterial);
     lineSegments.visible = true;
     this.scene.add(lineSegments);
-    
   }
 
   addItem(item: Item) {
