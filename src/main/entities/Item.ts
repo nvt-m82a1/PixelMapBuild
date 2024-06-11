@@ -15,13 +15,18 @@ class Item {
 }
 
 class MapItem extends Item {
+  grid: THREE.GridHelper
+
   constructor(world: World) {
     super(world);
 
-    this.geometry = new THREE.BoxGeometry(10, 10, 0.1);
-    // this.material = new THREE.MeshNormalMaterial();
-    this.material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    this.geometry = new THREE.PlaneGeometry(10, 10);
+    this.material = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+    this.grid = new THREE.GridHelper(10, 10);
+    this.grid.rotation.x = Math.PI / 2;
+    this.grid.position.z = 0.01;
   }
 }
 
@@ -33,7 +38,7 @@ class BoxItem extends Item {
     // this.material = new THREE.MeshNormalMaterial();
     this.material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.mesh.position.setZ(0.25);
+    this.mesh.position.z = 0.16;
   }
 }
 
